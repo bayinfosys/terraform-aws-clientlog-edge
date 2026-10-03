@@ -34,9 +34,21 @@ variable "project" {
 }
 
 variable "record_fields" {
-  description = "CloudFront log fields to deliver. Null selects the default set."
+  description = "CloudFront log fields to deliver. The default excludes the query string and cookies."
   type        = list(string)
-  default     = null
+  default = [
+    "timestamp",
+    "DistributionId",
+    "c-ip",
+    "cs-method",
+    "x-host-header",
+    "cs-uri-stem",
+    "sc-status",
+    "cs(Referer)",
+    "cs(User-Agent)",
+    "sc-content-type",
+    "x-edge-request-id",
+  ]
 }
 
 variable "archive_prefix" {
