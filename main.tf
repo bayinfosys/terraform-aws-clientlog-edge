@@ -92,13 +92,6 @@ resource "aws_kinesis_firehose_delivery_stream" "this" {
       compression_format  = "GZIP"
       buffering_size      = 5
       buffering_interval  = 300
-
-      processing_configuration {
-        enabled = true
-        processors {
-          type = "AppendDelimiterToRecord"
-        }
-      }
     }
   }
 
