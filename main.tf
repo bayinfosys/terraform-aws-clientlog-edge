@@ -80,7 +80,7 @@ resource "aws_kinesis_firehose_delivery_stream" "this" {
   provider    = aws.us_east
   name        = "${var.name}-edge-logs"
   destination = local.http_mode ? "http_endpoint" : "extended_s3"
-  tags        = var.tags
+  tags = merge(var.tags, { LogDeliveryEnabled = "true" })
 
   dynamic "extended_s3_configuration" {
     for_each = local.http_mode ? [] : [1]
